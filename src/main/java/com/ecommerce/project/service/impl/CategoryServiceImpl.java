@@ -1,4 +1,4 @@
-package com.ecommerce.project.service;
+package com.ecommerce.project.service.impl;
 
 import com.ecommerce.project.exceptions.APIException;
 import com.ecommerce.project.exceptions.ResourceNotFoundException;
@@ -6,6 +6,7 @@ import com.ecommerce.project.model.Category;
 import com.ecommerce.project.payload.CategoryDTO;
 import com.ecommerce.project.payload.CategoryResponse;
 import com.ecommerce.project.repositories.CategoryRepository;
+import com.ecommerce.project.service.CategoryService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,7 +18,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CategoryServiceImpl implements CategoryService{
+public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     private CategoryRepository categoryRepository;
@@ -47,19 +48,13 @@ public class CategoryServiceImpl implements CategoryService{
         categoryResponse.setPageNumber(categoryPage.getNumber());
         categoryResponse.setPageSize(categoryPage.getSize());
         categoryResponse.setTotalElements(categoryPage.getTotalElements());
-        categoryResponse.setTotalpages(categoryPage.getTotalPages());
+        categoryResponse.setTotalPages(categoryPage.getTotalPages());
         categoryResponse.setLastPage(categoryPage.isLast());
         return categoryResponse;
     }
 
     @Override
     public CategoryDTO createCategory(CategoryDTO categoryDTO) {
-
-        //Check if the category name is less than 5 characters
-        if(categoryDTO.getCategoryName().length() < 5) {
-            throw new APIException("Category name must be at least 5 characters long.");
-        }
-
         Category category = modelMapper.map(categoryDTO, Category.class);
         Category categoryFromDb = categoryRepository.findByCategoryName(category.getCategoryName());
         if (categoryFromDb != null)
