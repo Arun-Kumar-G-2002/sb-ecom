@@ -1,5 +1,6 @@
-package com.ecommerce.project.model;
+package com.ecommerce.project.security.model;
 
+import com.ecommerce.project.model.product.Product;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

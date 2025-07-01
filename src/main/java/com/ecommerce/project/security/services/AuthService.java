@@ -1,8 +1,8 @@
 package com.ecommerce.project.security.services;
 
-import com.ecommerce.project.model.AppRole;
-import com.ecommerce.project.model.Role;
-import com.ecommerce.project.model.User;
+import com.ecommerce.project.enums.AppRole;
+import com.ecommerce.project.security.model.Role;
+import com.ecommerce.project.security.model.User;
 import com.ecommerce.project.repositories.RoleRepository;
 import com.ecommerce.project.repositories.UserRepository;
 import com.ecommerce.project.security.jwt.JwtUtils;

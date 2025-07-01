@@ -1,4 +1,4 @@
-package com.ecommerce.project.model;
+package com.ecommerce.project.security.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

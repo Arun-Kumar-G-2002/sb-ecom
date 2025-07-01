@@ -1,5 +1,6 @@
-package com.ecommerce.project.model;
+package com.ecommerce.project.model.category;
 
+import com.ecommerce.project.model.product.Product;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

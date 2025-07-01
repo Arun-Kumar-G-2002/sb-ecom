@@ -1,5 +1,6 @@
-package com.ecommerce.project.model;
+package com.ecommerce.project.security.model;
 
+import com.ecommerce.project.enums.AppRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
