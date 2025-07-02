@@ -1,5 +1,6 @@
 package com.ecommerce.project.security.model;
 
+import com.ecommerce.project.model.cart.Cart;
 import com.ecommerce.project.model.product.Product;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -20,6 +21,7 @@ import java.util.Set;
         @UniqueConstraint(columnNames = "username"),
         @UniqueConstraint(columnNames = "email")
         })
+@AllArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -70,4 +72,8 @@ public class User {
             cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             orphanRemoval = true)
     private Set<Product> products;
+
+    @OneToOne(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
 }

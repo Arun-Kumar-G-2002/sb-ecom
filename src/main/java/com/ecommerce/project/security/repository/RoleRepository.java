@@ -1,4 +1,4 @@
-package com.ecommerce.project.repositories;
+package com.ecommerce.project.security.repository;
 
 import com.ecommerce.project.enums.AppRole;
 import com.ecommerce.project.security.model.Role;

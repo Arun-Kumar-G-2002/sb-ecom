@@ -3,8 +3,8 @@ package com.ecommerce.project.security.services;
 import com.ecommerce.project.enums.AppRole;
 import com.ecommerce.project.security.model.Role;
 import com.ecommerce.project.security.model.User;
-import com.ecommerce.project.repositories.RoleRepository;
-import com.ecommerce.project.repositories.UserRepository;
+import com.ecommerce.project.security.repository.RoleRepository;
+import com.ecommerce.project.security.repository.UserRepository;
 import com.ecommerce.project.security.jwt.JwtUtils;
 import com.ecommerce.project.security.request.LoginRequestDTO;
 import com.ecommerce.project.security.request.SignupRequestDTO;
@@ -19,6 +19,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -64,14 +65,14 @@ public class AuthService {
         ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(userDetails);
 
         List<String> roles = userDetails.getAuthorities().stream()
-                .map(item -> item.getAuthority())
+                .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
 
         UserInfoResponseDTO response = new UserInfoResponseDTO(
                 userDetails.getId(),
                 userDetails.getUsername(),
                 roles,
-                jwtCookie.getValue()
+                jwtCookie.toString()
         );
 
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE,

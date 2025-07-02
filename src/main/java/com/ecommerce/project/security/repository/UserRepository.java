@@ -1,4 +1,4 @@
-package com.ecommerce.project.repositories;
+package com.ecommerce.project.security.repository;
 
 import com.ecommerce.project.security.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;

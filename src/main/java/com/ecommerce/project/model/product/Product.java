@@ -1,5 +1,6 @@
 package com.ecommerce.project.model.product;
 
+import com.ecommerce.project.model.cart.CartItems;
 import com.ecommerce.project.model.category.Category;
 import com.ecommerce.project.security.model.User;
 import jakarta.persistence.*;
@@ -9,6 +10,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -42,4 +46,7 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "seller_id")
     private User user;
+
+    @OneToMany(mappedBy = "product", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<CartItems> products = new ArrayList<>();
 }
