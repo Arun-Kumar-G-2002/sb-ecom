@@ -1,10 +1,10 @@
 package com.ecommerce.project.security;
 
-import com.ecommerce.project.enums.AppRole;
-import com.ecommerce.project.security.model.Role;
-import com.ecommerce.project.security.model.User;
-import com.ecommerce.project.security.repository.RoleRepository;
-import com.ecommerce.project.security.repository.UserRepository;
+import com.ecommerce.project.model.AppRole;
+import com.ecommerce.project.model.Role;
+import com.ecommerce.project.model.User;
+import com.ecommerce.project.repositories.RoleRepository;
+import com.ecommerce.project.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -47,6 +47,7 @@ public class WebSecurityConfig {
         return new AuthTokenFilter();
     }
 
+
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -57,6 +58,7 @@ public class WebSecurityConfig {
         return authProvider;
     }
 
+
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
         return authConfig.getAuthenticationManager();
@@ -66,6 +68,8 @@ public class WebSecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -102,6 +106,7 @@ public class WebSecurityConfig {
                 "/swagger-ui.html",
                 "/webjars/**"));
     }
+
 
     @Bean
     public CommandLineRunner initData(RoleRepository roleRepository, UserRepository userRepository, PasswordEncoder passwordEncoder) {

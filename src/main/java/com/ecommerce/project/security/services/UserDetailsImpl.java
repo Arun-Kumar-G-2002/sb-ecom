@@ -11,7 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.ecommerce.project.security.model.User;
+import com.ecommerce.project.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @NoArgsConstructor
