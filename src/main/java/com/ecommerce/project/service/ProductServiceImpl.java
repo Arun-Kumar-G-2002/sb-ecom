@@ -27,7 +27,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-
     @Autowired
     private CartRepository cartRepository;
 
@@ -189,7 +188,7 @@ public class ProductServiceImpl implements ProductService {
             List<ProductDTO> products = cart.getCartItems().stream()
                     .map(p -> modelMapper.map(p.getProduct(), ProductDTO.class)).collect(Collectors.toList());
 
-             cartDTO.setProducts(products);
+            cartDTO.setProducts(products);
 
             return cartDTO;
 
@@ -208,7 +207,7 @@ public class ProductServiceImpl implements ProductService {
         // DELETE
         List<Cart> carts = cartRepository.findCartsByProductId(productId);
         carts.forEach(cart -> cartService.deleteProductFromCart(cart.getCartId(), productId));
-        
+
         productRepository.delete(product);
         return modelMapper.map(product, ProductDTO.class);
     }

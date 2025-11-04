@@ -58,7 +58,7 @@ public class User {
 
     @Getter
     @Setter
-    @OneToMany(mappedBy = "users", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
 //    @JoinTable(name = "user_address",
 //                joinColumns = @JoinColumn(name = "user_id"),
 //                inverseJoinColumns = @JoinColumn(name = "address_id"))
